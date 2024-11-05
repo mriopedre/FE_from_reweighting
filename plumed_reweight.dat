@@ -1,0 +1,10 @@
+RESTART
+
+#CV
+puck: PUCKERING ATOMS=5,3,19,15,11,6 #O5 C1 C2 C3 C4 C5
+
+#Run Metadynamics with Huge PACE and 0 HILL height (not adding any additional bias)
+metad: METAD ARG=puck.qx,puck.qy,puck.qz PACE=25000000 HEIGHT=0 BIASFACTOR=50 SIGMA=0.01,0.01,0.01 TEMP=310.15 GRID_MIN=-0.2,-0.2,-0.2 GRID_MAX=0.2,0.2,0.2 GRID_WSTRIDE=250000 GRID_WFILE=GRIDfile_rew.dat 
+
+#Printing the bias together with the value of the CVs. Print at every frame. 
+PRINT STRIDE=1 ARG=puck.qz,puck.qy,puck.qx,metad.bias FILE=COLVAR_REWEIGHT

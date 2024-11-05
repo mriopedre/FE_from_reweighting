@@ -1,6 +1,7 @@
 # FE from reweighting
 
 Python code to calculate free energy from reweighting a metadynamics trajectory. Complementary method to plumed sum_hills, usefull sometimes - error analysis, complex CVs, PBMetaD, checking convergence... 
+Example of reweight trajectory from plumed in plumed_reweight.dat
  
 ```python
 #Example usage
