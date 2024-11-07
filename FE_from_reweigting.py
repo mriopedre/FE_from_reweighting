@@ -66,10 +66,9 @@ def plot_raw_histogram(cv, axes):
     """Plot the raw histogram of the CV values"""
     hist_raw, bins_raw = np.histogram(cv, bins=50, density=True)
     bins_raw = calc_center_of_bins(bins_raw)
-    ax_hist = axes[0].twinx()  # Create secondary axis
+    ax_hist = axes[1].twinx()  # Create secondary axis
     ax_hist.plot(bins_raw, hist_raw, color='green')
     ax_hist.set_ylabel('Raw histogram Density')
-    ax_hist.legend(loc='upper right')
 
 def extract_sum_hills(sum_hills, bins, axes):
     """Extract the free energy from sum_hills and plot it"""
