@@ -2,6 +2,11 @@
 
 Python code to calculate free energy from reweighting a metadynamics trajectory. Complementary method to plumed sum_hills, usefull sometimes - error analysis, complex CVs, PBMetaD, checking convergence... 
 Example of reweight trajectory from plumed in plumed_reweight.dat
+
+To produce the example file run plumed driver to print the bias and the value of any CV of interest in a file.
+The example plumed file is provided as plumed_reweight.dat.
+The command to execute it in plumed as follows:
+	plumed driver --mf_xtc md.xtc --plumed plumed_reweight.dat --kt 2.57 
  
 ```python
 #Example usage
