@@ -17,7 +17,7 @@ The command to execute it in plumed as follows:
 #Set KBT according to the temperature of the simulation
 fol = '/example_folder/'
 file = fol+'/COLVAR_REWEIGHT'
-KBT=2.57
+KBT = calc_KBT(298, unit='kJ') # 298K
 
 #Read the colvar file and split it adequatelly 
 #Example here for a given Colvar file. Split accordingly to the field in your Colvar.

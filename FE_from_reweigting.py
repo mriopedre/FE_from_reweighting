@@ -3,6 +3,27 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm
 
+def calc_KBT(t, unit='kJ'):
+    """Calculate KBT in kJ or kcal given a temperature (in kelvin)
+
+    Args:
+        t (int, float): Temperature in kelvin
+        unit (str, optional): Kj o Kcal. Prefered energy units. Defaults to 'kJ'.
+
+    Returns:
+        float: KBT value in kJ/mol or kcal/mol
+    """
+    kb = 1.380649e-26 #kJ/K
+    NA = 6.022e23
+
+    if unit == 'kJ': pass
+    elif unit == 'kcal': kb = kb / 4.184 #kCal/K
+    else:
+        raise ValueError("Unsupported unit. Use 'kJ' or 'kcal', or Add the KBT value manually.")
+
+    KBT = kb * t * NA
+    return KBT
+
 def calc_center_of_bins(bins):
     """Centers the bins for plotting the histogram correctly"""
     centered_bins = (bins[:-1] + bins[1:]) / 2
@@ -125,7 +146,7 @@ def plot_reweighted_FE_2D(cv1, cv2, weights, vmax = 80):
 # Set KBT according to the temperature of the simulation
 fol = '/example_folder/'
 file = fol+'/COLVAR_REWEIGHT'
-KBT=2.57
+KBT = calc_KBT(298, unit='kJ') # 298K
 
 # Read the colvar file and split it adequatelly 
 # Example here for a given Colvar file. Split accordingly to the field in your Colvar.
@@ -137,6 +158,6 @@ weights = calculate_weights(KBT, bias)
 # Examples to plot the free energy for 1D or 2D CVs
 # sum_hills - optional, file - point to file with sum_hills results. Shows comparison.
 # plot_histogram - optional, bolean - shows sampling of the CV by printing the unweigthed histogram. 
-plot_reweighted_FE_1D(qz, weights, sum_hills = f+'/qz.dat', plot_histogram=True)
+plot_reweighted_FE_1D(qz, weights, sum_hills = fol+'/qz.dat', plot_histogram=True)
 # Plot 2D CVs
 plot_reweighted_FE_2D(qz, qx, weights)
